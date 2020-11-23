@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from CreditWSService WSDL service -->
+
+  <service name="CreditWS" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://iao.fsr.com"/>
+      <parameter name="wsdlServiceElement" value="CreditWSService"/>
+      <parameter name="schemaQualified" value="http://iao.fsr.com"/>
+      <parameter name="wsdlServicePort" value="CreditWS"/>
+      <parameter name="className" value="com.fsr.iao.CreditWS"/>
+      <parameter name="wsdlPortType" value="CreditWS"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://iao.fsr.com" xmlns:retNS="http://iao.fsr.com" xmlns:rtns="http://iao.fsr.com" name="login" qname="operNS:login" returnQName="retNS:loginReturn" returnType="rtns:Client" soapAction="">
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:email" type="tns:string"/>
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:pass" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://iao.fsr.com" xmlns:retNS="http://iao.fsr.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="calculAnnuelle" qname="operNS:calculAnnuelle" returnQName="retNS:calculAnnuelleReturn" returnType="rtns:double" soapAction="">
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:taux" type="tns:double"/>
+      </operation>
+      <operation xmlns:operNS="http://iao.fsr.com" xmlns:retNS="http://iao.fsr.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="calculAnnuite" qname="operNS:calculAnnuite" returnQName="retNS:calculAnnuiteReturn" returnType="rtns:double" soapAction="">
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:capital" type="tns:double"/>
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:t" type="tns:double"/>
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:duree" type="tns:long"/>
+      </operation>
+      <operation xmlns:operNS="http://iao.fsr.com" xmlns:retNS="http://iao.fsr.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="calculCapital" qname="operNS:calculCapital" returnQName="retNS:calculCapitalReturn" returnType="rtns:double" soapAction="">
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:annuite" type="tns:double"/>
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:t" type="tns:double"/>
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:duree" type="tns:long"/>
+      </operation>
+      <operation xmlns:operNS="http://iao.fsr.com" xmlns:retNS="http://iao.fsr.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="calculDuree" qname="operNS:calculDuree" returnQName="retNS:calculDureeReturn" returnType="rtns:long" soapAction="">
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:capital" type="tns:double"/>
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:t" type="tns:double"/>
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:annuite" type="tns:double"/>
+      </operation>
+      <operation xmlns:operNS="http://iao.fsr.com" xmlns:retNS="http://iao.fsr.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="insertClient" qname="operNS:insertClient" returnQName="retNS:insertClientReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nomCli" type="tns:string"/>
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:email" type="tns:string"/>
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:pass" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://iao.fsr.com" xmlns:retNS="http://iao.fsr.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="insertCredit" qname="operNS:insertCredit" returnQName="retNS:insertCreditReturn" returnType="rtns:int" soapAction="">
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:capital" type="tns:double"/>
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:duree" type="tns:long"/>
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:taux" type="tns:double"/>
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:annuite" type="tns:double"/>
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:numclient" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://iao.fsr.com" xmlns:retNS="http://iao.fsr.com" xmlns:rtns="http://iao.fsr.com" name="getAllCredit" qname="operNS:getAllCredit" returnQName="retNS:getAllCreditReturn" returnType="rtns:Credit" soapAction="">
+        <parameter xmlns:pns="http://iao.fsr.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:numCli" type="tns:int"/>
+      </operation>
+      <parameter name="allowedMethods" value="insertCredit getAllCredit calculDuree calculAnnuite calculCapital insertClient login calculAnnuelle"/>
+
+      <typeMapping xmlns:ns="http://iao.fsr.com" qname="ns:Client" type="java:com.fsr.iao.Client" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://iao.fsr.com" qname="ns:Credit" type="java:com.fsr.iao.Credit" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://iao.fsr.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://iao.fsr.com" xmlns:intf="http://iao.fsr.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://iao.fsr.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="login">
+    <complexType>
+     <sequence>
+      <element name="email" type="xsd:string"/>
+      <element name="pass" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="loginResponse">
+    <complexType>
+     <sequence>
+      <element name="loginReturn" type="impl:Client"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Client">
+    <sequence>
+     <element name="email" nillable="true" type="xsd:string"/>
+     <element name="nomCli" nillable="true" type="xsd:string"/>
+     <element name="numCli" type="xsd:int"/>
+     <element name="pass" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="calculAnnuelle">
+    <complexType>
+     <sequence>
+      <element name="taux" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="calculAnnuelleResponse">
+    <complexType>
+     <sequence>
+      <element name="calculAnnuelleReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="calculAnnuite">
+    <complexType>
+     <sequence>
+      <element name="capital" type="xsd:double"/>
+      <element name="t" type="xsd:double"/>
+      <element name="duree" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="calculAnnuiteResponse">
+    <complexType>
+     <sequence>
+      <element name="calculAnnuiteReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="calculCapital">
+    <complexType>
+     <sequence>
+      <element name="annuite" type="xsd:double"/>
+      <element name="t" type="xsd:double"/>
+      <element name="duree" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="calculCapitalResponse">
+    <complexType>
+     <sequence>
+      <element name="calculCapitalReturn" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="calculDuree">
+    <complexType>
+     <sequence>
+      <element name="capital" type="xsd:double"/>
+      <element name="t" type="xsd:double"/>
+      <element name="annuite" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="calculDureeResponse">
+    <complexType>
+     <sequence>
+      <element name="calculDureeReturn" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="insertClient">
+    <complexType>
+     <sequence>
+      <element name="nomCli" type="xsd:string"/>
+      <element name="email" type="xsd:string"/>
+      <element name="pass" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="insertClientResponse">
+    <complexType>
+     <sequence>
+      <element name="insertClientReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="insertCredit">
+    <complexType>
+     <sequence>
+      <element name="capital" type="xsd:double"/>
+      <element name="duree" type="xsd:long"/>
+      <element name="taux" type="xsd:double"/>
+      <element name="annuite" type="xsd:double"/>
+      <element name="numclient" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="insertCreditResponse">
+    <complexType>
+     <sequence>
+      <element name="insertCreditReturn" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllCredit">
+    <complexType>
+     <sequence>
+      <element name="numCli" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllCreditResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="getAllCreditReturn" type="impl:Credit"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="Credit">
+    <sequence>
+     <element name="annuite" type="xsd:double"/>
+     <element name="capital" type="xsd:double"/>
+     <element name="date" nillable="true" type="xsd:string"/>
+     <element name="duree" type="xsd:long"/>
+     <element name="numCre" type="xsd:int"/>
+     <element name="numclient" type="xsd:int"/>
+     <element name="taux" type="xsd:double"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getAllCreditRequest">
+
+      <wsdl:part element="impl:getAllCredit" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="insertCreditResponse">
+
+      <wsdl:part element="impl:insertCreditResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="calculCapitalRequest">
+
+      <wsdl:part element="impl:calculCapital" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="insertClientResponse">
+
+      <wsdl:part element="impl:insertClientResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="insertClientRequest">
+
+      <wsdl:part element="impl:insertClient" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllCreditResponse">
+
+      <wsdl:part element="impl:getAllCreditResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="calculAnnuelleRequest">
+
+      <wsdl:part element="impl:calculAnnuelle" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="calculAnnuelleResponse">
+
+      <wsdl:part element="impl:calculAnnuelleResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="calculAnnuiteResponse">
+
+      <wsdl:part element="impl:calculAnnuiteResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="calculDureeRequest">
+
+      <wsdl:part element="impl:calculDuree" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="insertCreditRequest">
+
+      <wsdl:part element="impl:insertCredit" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="calculDureeResponse">
+
+      <wsdl:part element="impl:calculDureeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="calculAnnuiteRequest">
+
+      <wsdl:part element="impl:calculAnnuite" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginResponse">
+
+      <wsdl:part element="impl:loginResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginRequest">
+
+      <wsdl:part element="impl:login" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="calculCapitalResponse">
+
+      <wsdl:part element="impl:calculCapitalResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="CreditWS">
+
+      <wsdl:operation name="login">
+
+         <wsdl:input message="impl:loginRequest" name="loginRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:loginResponse" name="loginResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="calculAnnuelle">
+
+         <wsdl:input message="impl:calculAnnuelleRequest" name="calculAnnuelleRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:calculAnnuelleResponse" name="calculAnnuelleResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="calculAnnuite">
+
+         <wsdl:input message="impl:calculAnnuiteRequest" name="calculAnnuiteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:calculAnnuiteResponse" name="calculAnnuiteResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="calculCapital">
+
+         <wsdl:input message="impl:calculCapitalRequest" name="calculCapitalRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:calculCapitalResponse" name="calculCapitalResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="calculDuree">
+
+         <wsdl:input message="impl:calculDureeRequest" name="calculDureeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:calculDureeResponse" name="calculDureeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="insertClient">
+
+         <wsdl:input message="impl:insertClientRequest" name="insertClientRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:insertClientResponse" name="insertClientResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="insertCredit">
+
+         <wsdl:input message="impl:insertCreditRequest" name="insertCreditRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:insertCreditResponse" name="insertCreditResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllCredit">
+
+         <wsdl:input message="impl:getAllCreditRequest" name="getAllCreditRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllCreditResponse" name="getAllCreditResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="CreditWSSoapBinding" type="impl:CreditWS">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="login">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="loginRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="loginResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="calculAnnuelle">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="calculAnnuelleRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="calculAnnuelleResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="calculAnnuite">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="calculAnnuiteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="calculAnnuiteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="calculCapital">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="calculCapitalRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="calculCapitalResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="calculDuree">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="calculDureeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="calculDureeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="insertClient">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="insertClientRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="insertClientResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="insertCredit">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="insertCreditRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="insertCreditResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllCredit">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllCreditRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllCreditResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="CreditWSService">
+
+      <wsdl:port binding="impl:CreditWSSoapBinding" name="CreditWS">
+
+         <wsdlsoap:address location="http://localhost:8080/CreditAppSoap/services/CreditWS"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
